@@ -14,7 +14,7 @@ router.post('/', (req, res)=>{
 
     listTask.push(task)
     res.status(201).json({ message: task})
-})
+}) 
 
 
 router.get('/', (req, res)=> {
@@ -40,8 +40,7 @@ router.get('/:id/', (req, res)=>{
 
 router.put('/:id/', (req, res)=>{
 
-    // il faut noter que meme sans id recuperer dans l'exécurtion du code la requette en recuperant l'object par son id spécifié dans URL pourra changer les données mais à l'affichage on aura plus id 
-    
+     
     const id = parseInt(req.params.id);
     const nouvel = req.body;
 
@@ -51,7 +50,7 @@ router.put('/:id/', (req, res)=>{
     }
 
     task.nom = task.nom||nouvel.nom 
-
+    task.description = task.description||nouvel.description
 
     res.status(200).json({message: 'Changement de données',id, nouvel})
 })
