@@ -44,16 +44,20 @@ router.put('/:id/', (req, res)=>{
     const id = parseInt(req.params.id);
     const nouvel = req.body;
 
+    //console.log(nouvel)
+
     const task = listTask.find(task => task.id === id); // Trouver la tâche par ID
     if (!task) {
         return res.status(404).json({ message: `Tâche avec l'ID ${id} introuvable.` });
     }
 
-    task.nom = task.nom||nouvel.nom 
-    task.description = task.description||nouvel.description
+    task.nom =nouvel.nom||task.nom
+    task.description = nouvel.description||task.description
 
     res.status(200).json({message: 'Changement de données',id, nouvel})
+
 })
+
 
 router.delete('/:id', (req, res)=>{
 
